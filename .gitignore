@@ -1,0 +1,10 @@
+# AI
+.aider*
+
+# Project
+/node_modules/
+/dist/
+
+# IDE
+.vscode/
+.idea/
