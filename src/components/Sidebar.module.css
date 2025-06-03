@@ -55,6 +55,7 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin-bottom: 12px;
 }
 
 .button:hover {
@@ -63,4 +64,32 @@
 
 .button:active {
   background-color: #2a56c6;
+}
+
+.button.copyButton {
+  background-color: #4caf50;
+  margin-bottom: 0;
+}
+
+.button.copyButton:hover {
+  background-color: #45a049;
+}
+
+.button.copyButton:active {
+  background-color: #3d8b40;
+}
+
+.button.copyButton.animating {
+  background-color: #2e7d32;
+  cursor: default;
+}
+
+.button.copyButton.animating:hover {
+  background-color: #2e7d32;
+}
+
+.error {
+  color: #d32f2f;
+  font-size: 14px;
+  margin-top: 12px;
 }
