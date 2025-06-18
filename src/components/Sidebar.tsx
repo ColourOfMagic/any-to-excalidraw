@@ -1,8 +1,15 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styles from './Sidebar.module.css';
-import { textToNodes } from '../utils/textToNodes';
 import type { ExcalidrawImperativeAPI } from '@excalidraw/excalidraw/types/types';
-import {convertToExcalidrawElements} from "@excalidraw/excalidraw";
+import ModeSelector from './ModeSelector';
+import TextToNodesInput from './inputs/TextToNodesInput';
+import TasklistToNodesInput from './inputs/TasklistToNodesInput';
+import { PanelMode } from '../types/PanelMode';
+
+// Common interface for all input components
+interface InputComponentRef {
+  convert: () => void;
+}
 
 /**
  * Sidebar component props
@@ -19,22 +26,12 @@ interface SidebarProps {
  */
 
 const Sidebar = ({ excalidrawAPI }: SidebarProps) => {
-  const [inputValue, setInputValue] = useState('');
+  const [selectedMode, setSelectedMode] = useState<PanelMode>('text-to-nodes');
   const [isAnimating, setIsAnimating] = useState(false);
   const [displayText, setDisplayText] = useState('Copy all');
-
-  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setInputValue(e.target.value);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter' && e.shiftKey) {
-      e.preventDefault();
-      handleConvert();
-    }
-  };
-
   const [error, setError] = useState<string | null>(null);
+
+  const activeInputRef = useRef<InputComponentRef | null>(null);
 
   const handleConvert = () => {
     if (!excalidrawAPI) {
@@ -44,21 +41,15 @@ const Sidebar = ({ excalidrawAPI }: SidebarProps) => {
     
     try {
       setError(null);
-      
-      // Convert text to nodes and update Excalidraw
-      const elements = textToNodes(inputValue);
-      
-      excalidrawAPI.updateScene({
-        elements: convertToExcalidrawElements(elements),
-      });
-      
-      excalidrawAPI.scrollToContent(excalidrawAPI.getSceneElements(), {
-        fitToContent: true,
-      });
+      activeInputRef.current?.convert();
     } catch (err) {
-      console.error('Error converting text:', err);
-      setError('Failed to convert text. Please check input format.');
+      console.error('Error converting:', err);
+      setError('Failed to convert. Please check input format.');
     }
+  };
+
+  const handleConvertSuccess = () => {
+    setError(null);
   };
 
   const handleCopyAll = async () => {
@@ -108,33 +99,50 @@ const Sidebar = ({ excalidrawAPI }: SidebarProps) => {
     }
   };
 
+  const renderInputComponent = () => {
+    const commonProps = {
+      ref: activeInputRef,
+      excalidrawAPI,
+      onConvert: handleConvertSuccess
+    };
+    
+    switch (selectedMode) {
+      case 'text-to-nodes':
+        return <TextToNodesInput {...commonProps} />;
+      case 'tasklist-to-nodes':
+        return <TasklistToNodesInput {...commonProps} />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className={styles.sidebar}>
       <h1 className={styles.appTitle}>* to excalidraw</h1>
-      <h2 className={styles.title}>Input</h2>
-      <p className={styles.description}>Each line will be converted to a separate node</p>
-      <textarea 
-        className={styles.textarea}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        value={inputValue}
-        placeholder="Enter text, each line will be a separate node"
+      <ModeSelector 
+        selectedMode={selectedMode}
+        onModeChange={setSelectedMode}
       />
-      <button 
-        className={styles.button}
-        onClick={handleConvert}
-        disabled={!excalidrawAPI}
-      >
-        Convert (shift+enter)
-      </button>
-      <button 
-        className={`${styles.button} ${styles.copyButton} ${isAnimating ? styles.animating : ''}`}
-        onClick={handleCopyAll}
-        disabled={!excalidrawAPI || isAnimating}
-      >
-        {displayText}
-      </button>
-      {error && <div className={styles.error}>{error}</div>}
+      <div className={styles.inputArea}>
+        {renderInputComponent()}
+      </div>
+      <div className={styles.buttonArea}>
+        <button 
+          className={styles.button}
+          onClick={handleConvert}
+          disabled={!excalidrawAPI}
+        >
+          Convert (shift+enter)
+        </button>
+        <button 
+          className={`${styles.button} ${styles.copyButton} ${isAnimating ? styles.animating : ''}`}
+          onClick={handleCopyAll}
+          disabled={!excalidrawAPI || isAnimating}
+        >
+          {displayText}
+        </button>
+        {error && <div className={styles.error}>{error}</div>}
+      </div>
     </div>
   );
 };

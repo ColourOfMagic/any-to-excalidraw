@@ -25,25 +25,17 @@
   position: relative;
 }
 
-.title {
-  margin-bottom: 8px;
+.inputArea {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
 }
 
-.description {
-  margin-bottom: 16px;
-  font-size: 14px;
-  color: #666;
-}
-
-.textarea {
-  width: 100%;
-  height: 70%;
-  padding: 8px;
-  font-family: monospace;
-  resize: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 16px;
+.buttonArea {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
 }
 
 .button {
