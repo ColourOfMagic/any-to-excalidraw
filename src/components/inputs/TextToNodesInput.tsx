@@ -67,7 +67,6 @@ const TextToNodesInput = forwardRef<TextToNodesInputRef, TextToNodesInputProps>(
             type="checkbox"
             checked={wrapInRectangles}
             onChange={(e) => setWrapInRectangles(e.target.checked)}
-            style={{ marginRight: '8px' }}
           />
           Wrap text in rectangles
         </label>

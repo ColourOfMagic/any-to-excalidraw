@@ -60,7 +60,10 @@ const TasklistToNodesInput = forwardRef<TasklistToNodesInputRef, TasklistToNodes
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           value={value}
-          placeholder="Enter markdown tasklist (e.g., - [ ] Task 1, - [x] Completed task)"
+          placeholder={`Enter markdown tasklist:
+- [ ] Task 1
+- [x] Completed task
+- [ ] Another task`}
         />
       </div>
     );

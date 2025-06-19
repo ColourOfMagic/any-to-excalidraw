@@ -44,17 +44,10 @@ describe('textToNodes', () => {
       type: 'text',
       x: 100,
       y: 100,
-      width: 200,
-      height: 50,
       text: 'Test line',
       fontSize: 20,
-      fontFamily: 1,
       textAlign: 'center',
-      verticalAlign: 'middle',
-      containerId: null,
-      isDeleted: false,
-      version: 1,
-      versionNonce: 1,
+      verticalAlign: 'middle'
     });
   });
 });

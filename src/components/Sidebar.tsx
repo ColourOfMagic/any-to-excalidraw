@@ -117,8 +117,8 @@ const Sidebar = ({ excalidrawAPI }: SidebarProps) => {
   };
 
   return (
-    <div className={styles.sidebar}>
-      <h1 className={styles.appTitle}>* to excalidraw</h1>
+    <div className={`${styles.sidebar} sidebar`}>
+      <h1 className={styles.appTitle}>to excalidraw</h1>
       <ModeSelector 
         selectedMode={selectedMode}
         onModeChange={setSelectedMode}
