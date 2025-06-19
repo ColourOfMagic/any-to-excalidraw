@@ -1,24 +1,194 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-}
-
+/* BRUTAL CSS RESET - Remove browser defaults but preserve Excalidraw */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-body {
+/* Reset specific elements, not everything */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, blockquote, pre, form, fieldset, legend, input, textarea, select, button {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
+  list-style: none;
+}
+
+/* Apply JetBrains Mono to our components only, not Excalidraw */
+body, .sidebar, .sidebar *, .mode-selector, .mode-selector *, .input-components, .input-components * {
+  font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #000000;
+}
+
+/* Remove form element styling for our components only */
+.sidebar input, .sidebar textarea, .sidebar select, .sidebar button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  background: none;
+  font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+  font-size: inherit;
+  color: inherit;
+  outline: none;
+}
+
+/* Custom focus styles for our components only */
+.sidebar *:focus {
+  outline: 2px solid #000000;
+  outline-offset: 0;
+}
+
+/* Base body and root */
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+  color: #000000;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.2;
 }
 
 #root {
   width: 100%;
   height: 100vh;
+  background-color: #FFFFFF;
+}
+
+/* Typography hierarchy */
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Button styles for our components only */
+.sidebar button {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 2px solid #000000;
+  background-color: #FFFFFF;
+  color: #000000;
+  font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: none;
+}
+
+.sidebar button:hover {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.sidebar button:active {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.sidebar button:disabled {
+  border-color: #808080;
+  color: #808080;
+  background-color: #FFFFFF;
+  cursor: not-allowed;
+}
+
+.sidebar button:disabled:hover {
+  background-color: #FFFFFF;
+  color: #808080;
+}
+
+/* Input styles for our components only */
+.sidebar input[type="text"], .sidebar textarea {
+  border: 2px solid #000000;
+  background-color: #FFFFFF;
+  color: #000000;
+  padding: 8px;
+  font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+  font-size: 14px;
+}
+
+.sidebar input[type="text"]:focus, .sidebar textarea:focus {
+  outline: 2px solid #000000;
+  outline-offset: -2px;
+}
+
+/* Custom checkbox for our components only */
+.sidebar input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #000000;
+  background-color: #FFFFFF;
+  position: relative;
+  cursor: pointer;
+}
+
+.sidebar input[type="checkbox"]:checked {
+  background-color: #000000;
+}
+
+
+/* Select dropdown for our components only */
+.sidebar select {
+  border: 2px solid #000000;
+  background-color: #FFFFFF;
+  color: #000000;
+  padding: 8px;
+  font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+  font-size: 14px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23000000' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 32px;
+}
+
+.sidebar select:focus {
+  outline: 2px solid #000000;
+  outline-offset: -2px;
+}
+
+/* Style select dropdown options */
+.sidebar select option {
+  background-color: #FFFFFF;
+  color: #000000;
+  font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 8px;
+}
+
+.sidebar select option:checked {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+.sidebar select option:hover {
+  background-color: #000000;
+  color: #FFFFFF;
 }
