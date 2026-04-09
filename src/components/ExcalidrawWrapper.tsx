@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import {convertToExcalidrawElements, Excalidraw} from '@excalidraw/excalidraw';
+import '@excalidraw/excalidraw/index.css';
 import styles from './ExcalidrawWrapper.module.css';
-import type { ExcalidrawImperativeAPI } from '@excalidraw/excalidraw/types/types';
+import type { ExcalidrawImperativeAPI } from '@excalidraw/excalidraw/types';
 import { textToNodes } from '../utils/textToNodes';
 
 /**

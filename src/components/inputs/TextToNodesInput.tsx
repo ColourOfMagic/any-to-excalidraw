@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState, useImperativeHandle, forwardRef } from 'react';
 import styles from './InputComponents.module.css';
 import { textToNodes } from '../../utils/textToNodes';
-import type { ExcalidrawImperativeAPI } from '@excalidraw/excalidraw/types/types';
+import type { ExcalidrawImperativeAPI } from '@excalidraw/excalidraw/types';
 import { convertToExcalidrawElements } from "@excalidraw/excalidraw";
 
 interface TextToNodesInputProps {

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styles from './Sidebar.module.css';
-import type { ExcalidrawImperativeAPI } from '@excalidraw/excalidraw/types/types';
+import type { ExcalidrawImperativeAPI } from '@excalidraw/excalidraw/types';
 import ModeSelector from './ModeSelector';
 import TextToNodesInput from './inputs/TextToNodesInput';
 import TasklistToNodesInput from './inputs/TasklistToNodesInput';
