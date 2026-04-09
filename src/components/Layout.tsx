@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import ExcalidrawWrapper from './ExcalidrawWrapper';
 import styles from './Layout.module.css';
-import type { ExcalidrawImperativeAPI } from '@excalidraw/excalidraw/types/types';
+import type { ExcalidrawImperativeAPI } from '@excalidraw/excalidraw/types';
 
 /**
  * Main application layout component

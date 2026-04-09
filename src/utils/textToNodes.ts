@@ -1,4 +1,4 @@
-import {ExcalidrawElementSkeleton} from "@excalidraw/excalidraw/types/data/transform";
+import {ExcalidrawElementSkeleton} from "@excalidraw/excalidraw/data/transform";
 
 /**
  * Converts text to Excalidraw elements
@@ -12,7 +12,7 @@ export function textToNodes(
 ): ExcalidrawElementSkeleton[] {
   const elements: ExcalidrawElementSkeleton[] = [];
 
-  // Если есть текст, добавляем элементы из него
+  // If text is provided, create elements from each line
   if (inputText) {
     const lines = inputText.split('\n').filter(line => line.trim() !== '');
     
